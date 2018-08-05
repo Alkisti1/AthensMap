@@ -1,49 +1,17 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './App.css';
-import Map  from './components/DisplayMap'
+import {MyMap} from './components/DisplayMap'
+import './App.css'
 
 class App extends Component {
   render() {
-  //set markers to load as points
-    let myLocations:[
-      {
-          title: 'Acropolis of Athens',
-          lat: 37.970833,
-          lng:  23.726111,
-          type: 'Landmark'
-      },
-      {
-          title: 'Ancient Agora of Athens',
-          lat: 37.975,
-          lng: 23.7225,
-          type: 'Landmark'
-      },
-      {
-          title: 'Acropolis Museum',
-          lat: 37.969108,
-          lng: 23.728299,
-          type:  'Museum'
-      },
-      {
-          title: 'National Archaelogical Museum of Athens',
-          lat: 37.98917,
-          lng: 23.731827,
-          type:  'Museum'
-      },
-      {
-          title: 'Panathenaic Stadium',
-          lat: 37.96833,
-          lng: 23.74111,
-          type: 'Landmark'
-      }
-    ]
-
-
-
     return (
-      <div>
-<Map />
+      <div className="App">
+        <MyMap
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAN1YV5D2JI8euHNDkHk1YWsEIEXFDKCbQ"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
       </div>
     );
   }

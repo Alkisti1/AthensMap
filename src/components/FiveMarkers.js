@@ -1,33 +1,44 @@
-var myMarkers = [
-    {
-        title: 'Acropolis of Athens',
-        lat: 37.970833,
-        lng:  23.726111,
-        type: 'Landmark'
-    },
-    {
-        title: 'Ancient Agora of Athens',
-        lat: 37.975,
-        lng: 23.7225,
-        type: 'Landmark'
-    },
-    {
-        title: 'Acropolis Museum',
-        lat: 37.969108,
-        lng: 23.728299,
-        type:  'Museum'
-    },
-    {
-        title: 'National Archaelogical Museum of Athens',
-        lat: 37.98917,
-        lng: 23.731827,
-        type:  'Museum'
-    },
-    {
-        title: 'Panathenaic Stadium',
-        lat: 37.96833,
-        lng: 23.74111,
-        type: 'Landmark'
+import React, { Component } from 'react';
+import { Marker, InfoWindow } from 'react-google-maps';
+
+class MarkerWithInfowindow extends Component {
+    constructor(props) {
+        super(props);
+        console.log(this.props.marker);
+        this.state = {
+            marker: this.props.marker,
+            isOpen: false,
+        }
+        this.toggleOpen = this.toggleOpen.bind(this);
+        this.toggleClose = this.toggleClose.bind(this);
     }
 
-]
+    toggleOpen() {
+        this.setState({
+            isOpen: true
+        });
+    }
+
+    toggleClose() {
+        this.setState({
+            isOpen: false
+        });
+    }
+
+    render() {
+        return (
+            <Marker
+                position={this.state.marker.location}
+                onClick={this.toggleOpen}
+            >
+                {this.state.isOpen && <InfoWindow
+                    onCloseClick={this.toggleClose}
+                >
+                    <div>{this.state.marker.name}</div>
+                </InfoWindow>}
+            </Marker>
+        );
+    }
+}
+
+export default MarkerWithInfowindow;
